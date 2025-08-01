@@ -1,3 +1,4 @@
+
 # Sequence Diagram - Host, Client, Server (Mermaid)
 
 ```mermaid
@@ -42,3 +43,4 @@ sequenceDiagram
     %% Termination
     Host->>Client: Terminate
     Client->>Server: End session
+```
