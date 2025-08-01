@@ -1,24 +1,23 @@
-# ModelContextProtocol
+# Sequence Diagram - Host, Client, Server (Mermaid)
 
-
-```mermaid3
+```mermaid
 sequenceDiagram
     autonumber
     participant Host
     participant Client
     participant Server
 
-    %% Inicialização
+    %% Initialization
     Host->>Client: Initialize client
     Client->>Server: Initialize session with capabilities
     Server->>Client: Respond with supported capabilities
 
-    %% Sessão ativa com recursos negociados
+    %% Active Session
     rect rgb(60,60,60)
         Note over Host,Server: Active Session with Negotiated Features
     end
 
-    %% Loop de requisições do cliente
+    %% Client Requests Loop
     loop [Client Requests]
         Host->>Client: User- or model-initiated action
         Client->>Server: Request (tools/resources)
@@ -26,7 +25,7 @@ sequenceDiagram
         Client->>Host: Update UI or respond to model
     end
 
-    %% Loop de requisições do servidor
+    %% Server Requests Loop
     loop [Server Requests]
         Server->>Client: Request (sampling)
         Client->>Host: Forward to AI
@@ -34,14 +33,12 @@ sequenceDiagram
         Client->>Server: Response
     end
 
-    %% Loop de notificações
+    %% Notifications Loop
     loop [Notifications]
         Server-->>Client: Resource updates
         Server-->>Client: Status changes
     end
 
-    %% Encerramento de sessão
+    %% Termination
     Host->>Client: Terminate
     Client->>Server: End session
-
-```
